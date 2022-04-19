@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 
 driver = webdriver.Chrome('./chromedriver')
 driver.get("https://rollbit.com/nft/lobby/sportsbots")
-time.sleep(5)
+time.sleep(60)
 
 while (True):
 
@@ -20,7 +20,12 @@ while (True):
     price = driver.find_element(By.XPATH, '//*[@id="root"]/div[6]/div[1]/div/div[4]/div[1]/div[4]/div[3]/div').text.replace("$", "")
     # Price of the cheapest NFT
     print(price)
-    priceFloat = float(price)
+
+    try:
+        priceFloat = float(price)
+
+    except:
+        priceFloat = 1000.0
 
     buyPrice = 850
 
