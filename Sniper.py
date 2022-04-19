@@ -9,6 +9,9 @@ driver.get("https://rollbit.com/nft/lobby/sportsbots")
 time.sleep(5)
 
 while (True):
+
+    time.sleep(5)
+
     driver.find_element(By.XPATH, '/html/body/div[1]/div[6]/div[1]/div/div[3]/button[2]').click()  # Click Main Filter
     driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div[3]').click()  # Click on Lowest Price Filter
 
@@ -17,12 +20,13 @@ while (True):
     price = driver.find_element(By.XPATH, '//*[@id="root"]/div[6]/div[1]/div/div[4]/div[1]/div[4]/div[3]/div').text.replace("$", "")
     # Price of the cheapest NFT
     print(price)
+    priceFloat = float(price)
 
-    buyPrice = "700"
+    buyPrice = 850
 
-    if price < buyPrice:
+    if priceFloat < buyPrice:
         driver.find_element(By.XPATH, '//*[@id="root"]/div[6]/div[1]/div/div[4]/div[1]/div[5]/button[1]').click()
         # Click on Lowest Price Filter
-        print("BUY | " & driver.find_element(By.XPATH, '/html/body/div[1]/div[5]/div[1]/div/div[4]/div[1]/div[1]/div/a/div') & " | Price: $" & price)
+        print("BUY | " + driver.find_element(By.XPATH, '//*[@id="root"]/div[6]/div[1]/div/div[4]/div[1]/div[1]/div/a/div').text + " | Price: $" + price)
 
-    time.sleep(1)
+    driver.refresh()
